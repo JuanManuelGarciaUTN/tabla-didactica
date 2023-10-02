@@ -1,0 +1,64 @@
+<ion-content [fullscreen]="true">
+  <div class="splash-animado" *ngIf="cargando">
+    <div class="posicion">
+      <div class="vertical">
+        <img class="icon-animado-tl" src="../../assets/topLeft.png" width="25%" alt="">
+        <img class="icon-animado-tr" src="../../assets/topRight.png" width="25%" alt="">
+      </div>
+      <div class="vertical">
+        <img class="icon-animado-bl" src="../../assets/botLeft.png" width="25%" alt="">
+        <img class="icon-animado-br" src="../../assets/botRight.png" width="25%" alt="">
+      </div>
+    </div>
+    <h1>Juan Manuel</h1>
+    <h1>Garcia</h1>
+  </div>
+  <div class="menu-lado"  [ngClass]="{abierto: mostrarMenu, cerrado: !mostrarMenu}">
+    <h2>Accesos Rápidos</h2>
+    <button (click)="completarAdmin()">Admin</button>
+    <button (click)="completarInvitado()">Invitado</button>
+    <button (click)="completarUsuario()">Usuario</button>
+    <button (click)="completarAnonimo()">Anónimo</button>
+    <button (click)="completarTester()">Tester</button>
+  </div>
+  <div id="pantalla" class="contenedor" *ngIf="!cargando">
+    <div class="cabeza-titulo">
+      <img src="../../assets/ic_launcher.png" width="25%" alt="">
+      <h1>Relevamiento Visual</h1>
+    </div>
+    <form class="form" [formGroup]="form" (ngSubmit)="Login()">
+      <div class="left">
+        <div class="ingreso-datos">
+          <input type="email" formControlName="email" placeholder="Ingrese correo electrónico">
+          <ion-icon slot="end" name="desktop-outline"></ion-icon>
+        </div>
+        <div class="ingreso-datos"> 
+          <input type="password" formControlName="password" placeholder="Ingrese contraseña">
+          <ion-icon slot="end" name="key-outline"></ion-icon>
+        </div>
+      </div>
+      <div class="right">
+        <ion-button fill="clear" size="large" (click)="Login()" [disabled]="form.invalid || validando">
+          Ingresar
+        </ion-button> 
+      </div>
+    </form>
+    <div class="mostrar-error">
+      <div *ngIf="validando" class="center">
+        <ion-spinner name="crescent"></ion-spinner>
+        <h2>Validando</h2> 
+      </div>
+      <div *ngIf="(form.get('email')?.touched && !form.get('email')?.valid)|| form.get('password')?.touched && !form.get ('password')?.valid || loginInvalido" class="center">
+        <h2 *ngIf="form.get('email')?.touched && !form.get('email')?.valid">Correo Inválido</h2> 
+        <h2 *ngIf="form.get('password')?.touched && !form.get('password')?.valid">Falta Contraseña</h2> 
+        <h2 *ngIf="loginInvalido">Credenciales Invalidas</h2>
+        <ion-fab-button size="large" color="primary"
+        *ngIf="(form.get('email')?.touched && !form.get('email')?.valid)||
+        form.get('password')?.touched && !form.get('password')?.valid ||
+        loginInvalido">
+          <ion-icon name="sad-outline"></ion-icon>
+        </ion-fab-button> 
+      </div>
+    </div>
+  </div>
+</ion-content>
