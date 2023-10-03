@@ -11,9 +11,10 @@ import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PrincipalComponent } from './principal/principal.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, PrincipalComponent],
   imports: [
     BrowserModule, 
     ReactiveFormsModule,

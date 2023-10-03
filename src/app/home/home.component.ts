@@ -35,16 +35,21 @@ export class HomeComponent implements AfterViewInit{
   }
 
   ngAfterViewInit(){
-    
-
-    this.cargando = true;
-    setTimeout(()=>{
-      SplashScreen.hide();
+    if(this.db.usuario){
+      this.db.usuario = undefined;
+    }
+    else{
+      this.cargando = true;
       setTimeout(()=>{
-        this.cargando = false;
-        this.EncontrarPantalla();
-      }, 2500);
-    }, 1000);
+        setTimeout(()=>{
+          SplashScreen.hide();
+          setTimeout(()=>{
+            this.EncontrarPantalla();
+            this.cargando = false;
+          }, 2500);
+        }, 1000);
+      },500);
+    }
   }
 
   private EncontrarPantalla(){
@@ -112,7 +117,7 @@ export class HomeComponent implements AfterViewInit{
           this.db.login(datos);
           this.validando = false;
           this.limpiarInputs();
-          this.router.navigate(["selector"]);
+          this.router.navigate(["principal"]);
           return;
         }
       }

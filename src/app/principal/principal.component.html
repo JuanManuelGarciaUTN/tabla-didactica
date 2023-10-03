@@ -1,0 +1,81 @@
+
+<ion-content [fullscreen]="true">
+  <div class="contenedor">
+    <ion-fab slot="fixed" horizontal="start" vertical="start">
+      <ion-fab-button size="small" [disabled]="!jugando">
+        📖
+      </ion-fab-button>
+      <ion-fab-list side="bottom">
+        <ion-fab-button (click)="cambiarEsp()">
+          🇦🇷
+        </ion-fab-button>
+        <ion-fab-button (click)="cambiarEng()">
+          🇬🇧
+        </ion-fab-button>
+        <ion-fab-button (click)="cambiarPtg()">
+          🇵🇹
+        </ion-fab-button>
+      </ion-fab-list>
+    </ion-fab>
+    <ion-fab slot="fixed" horizontal="end" vertical="start">
+      <ion-fab-button size="small" [disabled]="!jugando">
+        🧠
+      </ion-fab-button>
+      <ion-fab-list side="bottom">
+        <ion-fab-button (click)="cambiarColores()">
+          🎨
+        </ion-fab-button>
+        <ion-fab-button (click)="cambiarNumeros()">
+          💯
+        </ion-fab-button>
+        <ion-fab-button (click)="cambiarAnimales()">
+          🐮
+        </ion-fab-button>
+      </ion-fab-list>
+    </ion-fab>
+    <div class="top">
+      <button (click)="cerrarSesion()">Cerrar Sesión</button>
+    </div>
+    <div *ngIf="tipo == EnumTipo.animales" class="bot">
+      <div *ngFor="let item of animales" class="cuadrilla" (click)="elegir(item)">
+        <img [src]="'../../assets/'+item+'.png'" alt="">
+      </div>
+    </div>
+    <div *ngIf="tipo == EnumTipo.colores" class="bot">
+      <div class="cuadrilla" (click)="elegir('rojo')">
+        <div class="rojo imgcolor2"></div>
+      </div>
+      <div class="cuadrilla" (click)="elegir('azul')">
+        <div class="azul imgcolor"></div>
+      </div>
+      <div class="cuadrilla" (click)="elegir('verde')">
+        <div class="verde imgcolor2"></div>
+      </div>
+      <div class="cuadrilla" (click)="elegir('amarillo')">
+        <div class="amarillo imgcolor"></div>
+      </div>
+      <div class="cuadrilla" (click)="elegir('celeste')">
+        <div class="celeste imgcolor2"></div>
+      </div>
+      <div class="cuadrilla" (click)="elegir('naranja')">
+        <div class="naranja imgcolor"></div>
+      </div>
+    </div>
+    <div *ngIf="tipo == EnumTipo.numeros" class="bot">
+      <div class="cuadrilla" (click)="elegir('uno')">1</div>
+      <div class="cuadrilla" (click)="elegir('dos')">2</div>
+      <div class="cuadrilla" (click)="elegir('tres')">3</div>
+      <div class="cuadrilla" (click)="elegir('cuatro')">4</div>
+      <div class="cuadrilla" (click)="elegir('cinco')">5</div>
+      <div class="cuadrilla" (click)="elegir('seis')">6</div>
+    </div>
+  </div>
+  <div *ngIf="!jugando" class="iniciador">
+    <div [ngClass]="{correcto: ganaste, incorrecto: !ganaste}">
+      <p *ngIf="ganaste">Correcto</p>
+      <p *ngIf="!ganaste">Incorrecto</p>
+      <button (click)="iniciarJuego()">Siguiente</button>
+      <button *ngIf="!ganaste" (click)="volverAIntentar()">Volver A Intentar</button>
+    </div>
+  </div>
+</ion-content>
