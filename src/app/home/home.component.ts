@@ -35,6 +35,7 @@ export class HomeComponent implements AfterViewInit{
   }
 
   ngAfterViewInit(){
+    console.log(this.db.usuario);
     if(this.db.usuario){
       this.db.usuario = undefined;
     }

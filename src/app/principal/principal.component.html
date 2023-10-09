@@ -3,7 +3,7 @@
   <div class="contenedor">
     <ion-fab slot="fixed" horizontal="start" vertical="start">
       <ion-fab-button size="small" [disabled]="!jugando">
-        📖
+        {{idiomaString}}
       </ion-fab-button>
       <ion-fab-list side="bottom">
         <ion-fab-button (click)="cambiarEsp()">
@@ -19,7 +19,7 @@
     </ion-fab>
     <ion-fab slot="fixed" horizontal="end" vertical="start">
       <ion-fab-button size="small" [disabled]="!jugando">
-        🧠
+        {{tipoString}}
       </ion-fab-button>
       <ion-fab-list side="bottom">
         <ion-fab-button (click)="cambiarColores()">
@@ -34,48 +34,48 @@
       </ion-fab-list>
     </ion-fab>
     <div class="top">
-      <button (click)="cerrarSesion()">Cerrar Sesión</button>
+      <button (click)="cerrarSesion()"><ion-icon name="return-up-back"></ion-icon></button>
     </div>
     <div *ngIf="tipo == EnumTipo.animales" class="bot">
-      <div *ngFor="let item of animales" class="cuadrilla" (click)="elegir(item)">
+      <div *ngFor="let item of animales" class="cuadrilla" (click)="iniciarSonido(item)">
         <img [src]="'../../assets/'+item+'.png'" alt="">
       </div>
     </div>
     <div *ngIf="tipo == EnumTipo.colores" class="bot">
-      <div class="cuadrilla" (click)="elegir('rojo')">
+      <div class="cuadrilla" (click)="iniciarSonido('rojo')">
         <div class="rojo imgcolor2"></div>
       </div>
-      <div class="cuadrilla" (click)="elegir('azul')">
+      <div class="cuadrilla" (click)="iniciarSonido('azul')">
         <div class="azul imgcolor"></div>
       </div>
-      <div class="cuadrilla" (click)="elegir('verde')">
+      <div class="cuadrilla" (click)="iniciarSonido('verde')">
         <div class="verde imgcolor2"></div>
       </div>
-      <div class="cuadrilla" (click)="elegir('amarillo')">
+      <div class="cuadrilla" (click)="iniciarSonido('amarillo')">
         <div class="amarillo imgcolor"></div>
       </div>
-      <div class="cuadrilla" (click)="elegir('celeste')">
+      <div class="cuadrilla" (click)="iniciarSonido('celeste')">
         <div class="celeste imgcolor2"></div>
       </div>
-      <div class="cuadrilla" (click)="elegir('naranja')">
+      <div class="cuadrilla" (click)="iniciarSonido('naranja')">
         <div class="naranja imgcolor"></div>
       </div>
     </div>
     <div *ngIf="tipo == EnumTipo.numeros" class="bot">
-      <div class="cuadrilla" (click)="elegir('uno')">1</div>
-      <div class="cuadrilla" (click)="elegir('dos')">2</div>
-      <div class="cuadrilla" (click)="elegir('tres')">3</div>
-      <div class="cuadrilla" (click)="elegir('cuatro')">4</div>
-      <div class="cuadrilla" (click)="elegir('cinco')">5</div>
-      <div class="cuadrilla" (click)="elegir('seis')">6</div>
+      <div class="cuadrilla" (click)="iniciarSonido('uno')">1</div>
+      <div class="cuadrilla" (click)="iniciarSonido('dos')">2</div>
+      <div class="cuadrilla" (click)="iniciarSonido('tres')">3</div>
+      <div class="cuadrilla" (click)="iniciarSonido('cuatro')">4</div>
+      <div class="cuadrilla" (click)="iniciarSonido('cinco')">5</div>
+      <div class="cuadrilla" (click)="iniciarSonido('seis')">6</div>
     </div>
   </div>
-  <div *ngIf="!jugando" class="iniciador">
+  <!-- <div *ngIf="!jugando" class="iniciador">
     <div [ngClass]="{correcto: ganaste, incorrecto: !ganaste}">
       <p *ngIf="ganaste">Correcto</p>
       <p *ngIf="!ganaste">Incorrecto</p>
       <button (click)="iniciarJuego()">Siguiente</button>
       <button *ngIf="!ganaste" (click)="volverAIntentar()">Volver A Intentar</button>
     </div>
-  </div>
+  </div> -->
 </ion-content>
